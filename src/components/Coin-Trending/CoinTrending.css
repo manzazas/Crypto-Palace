@@ -1,0 +1,39 @@
+/* Card container */
+.trending-card {
+  background-color: #01264a;       /* dark navy bg */
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 300px;
+  margin: 40px auto;               /* center horizontally with auto side‐margins */
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Title */
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* Reset the list */
+.trending-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Each list item */
+.trending-coins {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Remove the border on the last item */
+.trending-coins:last-child {
+  border-bottom: none;
+}

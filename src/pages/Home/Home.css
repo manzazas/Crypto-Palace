@@ -104,14 +104,23 @@
 
 .ath-change {
     text-align: right;
+    justify-content: center;
+    
+
      /* Highlight ATH change percentage */
 }
 .t24hr-pos {
-    color:green
+    color:green;
+    justify-content: center;
+    padding-left: 20%;
 }
 
 .t24hr-neg {
-    color:red
+    color:red;
+    padding-left: 20%;
+    justify-content: center;
+
+
 }   
 
 

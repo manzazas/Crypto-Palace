@@ -28,7 +28,7 @@ const LineChart = ({historicalData}) => {
   width="100%"
   height="400px"
   options={{
-    title: "Price History (Last 10 Days)",
+    title: "Price History",
     backgroundColor: "transparent",
     legend: {
       position: "bottom", 

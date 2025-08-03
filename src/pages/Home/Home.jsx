@@ -2,7 +2,7 @@ import React, {useContext, useState, useEffect} from 'react';
 import './Home.css'; 
 import {CoinContext} from '../../context/Coin-Context'; //import context
 import {Link} from "react-router-dom"; //import Link for coin details page
-
+import CoinTrending from '../../components/Coin-Trending/CoinTrending';
 const Home = () => {
   const {allCoin, currency} = useContext(CoinContext);//now allCoin and currency can be used in this page
   const [displayCoin, setDisplayCoin] = useState([]);
@@ -46,6 +46,8 @@ const Home = () => {
         <button type ="submit">Go</button>
         </form>
       </div> 
+      
+      <CoinTrending />
 
       <div className = "crypto-table">
         <div className = "table-design">
@@ -73,7 +75,7 @@ const Home = () => {
           </Link>)
         })}
       </div> 
-
+     
 
     </div> //end home
   )
