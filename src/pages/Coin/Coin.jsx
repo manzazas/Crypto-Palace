@@ -126,6 +126,8 @@ const Coin = () => {
       </div>
     </div>
   );
+
+ 
 };
 
 export default Coin;

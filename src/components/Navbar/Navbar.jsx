@@ -33,13 +33,14 @@ const Navbar = () => {
   
     return (
     <div className = "navbar">
+        
         <Link to = "/">
         <img className = "logo" src = {logo} alt = "CryptoPalace logo"></img>
         </Link>
+
         <ul>
-             <Link to = "/"><li>Home</li></Link>
-            <li>Features </li>
-            <li>Pricing</li>
+            <Link to = "/"><li>Home</li></Link>
+            <Link to = "/favorites"><li>Favorites</li></Link>
             <li>Blog</li>
         </ul>
         <div className = "nav-right">
