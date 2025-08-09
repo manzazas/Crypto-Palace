@@ -7,8 +7,13 @@ const Home = () => {
   const {allCoin, currency} = useContext(CoinContext);//now allCoin and currency can be used in this page
   const [displayCoin, setDisplayCoin] = useState([]);
   const [searchTerm, setSearchTerm]= useState(""); // state to hold the search term
-
+  const [favoriteCoins, setFavoriteCoins] = useState([])
   
+
+ 
+
+
+
   const handleInput = (event) => {
     setSearchTerm(event.target.value); // update search term based on user input
     if(event.target.value === "") {
@@ -31,6 +36,17 @@ const Home = () => {
     setDisplayCoin(allCoin);
   }, [allCoin]); //when allCoin changes, the display coin is also updated
   
+   const handleFavorite = (e, coinId) => {
+    e.preventDefault() // prevent reroute
+    setFavoriteCoins(prevFavorites =>{
+      if (prevFavorites.includes(coinId)){
+        return prevFavorites.filter((id) => id !== coinId);// unselect the coin from favorites if already selected
+      }
+      else {
+        return [...prevFavorites, coinId]; // add new cointo favorites
+      }
+    })
+  }
   
   return (
     <div className = "home">
@@ -58,7 +74,7 @@ const Home = () => {
           <p style = {{textAlign:"center"}}>24h Change</p>
           <p className = "market-cap">Market Cap</p>
           <p className = "ath-change">ATH change percentage</p>
-          
+          <p className = "favorite-selector">Favorite</p>
         </div>
         {
         displayCoin.slice(0,10).map((item, index) => {
@@ -74,7 +90,7 @@ const Home = () => {
             <p className = {item.price_change_percentage_24h > 0 ? "t24hr-pos": "t24hr-neg"}>{Math.floor(item.price_change_percentage_24h * 100) / 100}</p>
             <p className = "market-cap">{currency.symbol} {item.market_cap.toLocaleString()}</p>
             <p className = "ath-change">{item.ath_change_percentage}%</p>
-            <p className = "favorite-selector">☆</p>
+            <button onClick = {(e) => handleFavorite(e, item.id)} className = "favorite-selector">{favoriteCoins.includes(item.id) ? "★" : "☆"}</button>
           </Link>)
 
         })}
