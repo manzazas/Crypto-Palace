@@ -3,11 +3,12 @@ import './Home.css';
 import {CoinContext} from '../../context/Coin-Context'; //import context
 import {Link} from "react-router-dom"; //import Link for coin details page
 import CoinTrending from '../../components/Coin-Trending/CoinTrending';
+
 const Home = () => {
-  const {allCoin, currency} = useContext(CoinContext);//now allCoin and currency can be used in this page
+  const {allCoin, currency, favoriteCoins, setFavoriteCoins} = useContext(CoinContext);//now allCoin and currency can be used in this page
   const [displayCoin, setDisplayCoin] = useState([]);
   const [searchTerm, setSearchTerm]= useState(""); // state to hold the search term
-  const [favoriteCoins, setFavoriteCoins] = useState([])
+
   
 
  
@@ -36,17 +37,20 @@ const Home = () => {
     setDisplayCoin(allCoin);
   }, [allCoin]); //when allCoin changes, the display coin is also updated
   
+
    const handleFavorite = (e, coinId) => {
-    e.preventDefault() // prevent reroute
+    e.preventDefault();// prevent reroute
+    e.stopPropagation(); // stop event from bubbling up
     setFavoriteCoins(prevFavorites =>{
-      if (prevFavorites.includes(coinId)){
-        return prevFavorites.filter((id) => id !== coinId);// unselect the coin from favorites if already selected
-      }
-      else {
-        return [...prevFavorites, coinId]; // add new cointo favorites
-      }
+      const newFavorites = prevFavorites.includes(coinId)
+      ? prevFavorites.filter(id => id !== coinId) // if coin is already favorite, remove it
+      : [...prevFavorites, coinId]; // if coin is not favorite, add it
+      console.log("Updated favorites:", newFavorites);
+      return newFavorites;
     })
   }
+
+
   
   return (
     <div className = "home">
@@ -71,10 +75,10 @@ const Home = () => {
           <p>#</p>
           <p>Coins</p>
           <p>Price</p>
-          <p style = {{textAlign:"center"}}>24h Change</p>
+          <p className = "t24-col" style = {{textAlign:"center"}}>24h Change</p>
           <p className = "market-cap">Market Cap</p>
           <p className = "ath-change">ATH change percentage</p>
-          <p className = "favorite-selector">Favorite</p>
+          <p className = "fav-col">Favorite</p>
         </div>
         {
         displayCoin.slice(0,10).map((item, index) => {
@@ -89,7 +93,7 @@ const Home = () => {
       
             <p className = {item.price_change_percentage_24h > 0 ? "t24hr-pos": "t24hr-neg"}>{Math.floor(item.price_change_percentage_24h * 100) / 100}</p>
             <p className = "market-cap">{currency.symbol} {item.market_cap.toLocaleString()}</p>
-            <p className = "ath-change">{item.ath_change_percentage}%</p>
+            <p className = {item.ath_change_percentage > 0 ? "ath-change-pos" : "ath-change-neg"}>{item.ath_change_percentage?.toFixed(2)}%</p>
             <button onClick = {(e) => handleFavorite(e, item.id)} className = "favorite-selector">{favoriteCoins.includes(item.id) ? "★" : "☆"}</button>
           </Link>)
 

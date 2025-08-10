@@ -65,12 +65,14 @@
 .table-design{
     display:grid;
     grid-template-columns: 0.5fr 2fr 1fr 1fr 1.5fr 1fr 0.5fr;
-    gap:16px;
+    column-gap:16px;
+    row-gap:0;
     padding: 16px;
     align-items:center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     
 }
+.table-design > * { min-width: 0; }
 
 .table-design:hover {
     background-color: rgba(255, 255, 255, 0.05);
@@ -90,12 +92,10 @@
     
 }
 
+.table-design .coin-name{ display:flex; align-items:center; gap:10px; min-width:0; }
+.table-design .coin-name p{
+     min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
-.table-design .coin-name{
-    display:flex;
-    align-items:center;
-    gap: 10px;
-}
 .table-design .coin-name img{
     width: 30px;
     height: 30px;
@@ -115,16 +115,47 @@
 .t24hr-pos {
     color:green;
     justify-content: center;
-    padding-left: 20%;
+    padding-left: 0%;
 }
 
 .t24hr-neg {
     color:red;
-    padding-left: 20%;
+    padding-left: 0%;
     justify-content: center;
 
 
 }   
+
+.price,
+.change,           /* 24h change */
+.market-cap,
+.ath-change { 
+  justify-self: end;
+  text-align: right;
+  font-feature-settings:"tnum";
+  font-variant-numeric: tabular-nums;
+}
+.t24hr-pos, .t24hr-neg,.t24-col{
+    justify-self:center
+}
+.ath-change-pos, .ath-change-neg { 
+  justify-self:end; text-align:right;
+}
+
+
+.ath-change-pos {
+    color: #00ff9d;  /* Same green as t24hr-pos */
+    text-align: right;
+    justify-content: center;
+}
+
+.ath-change-neg {
+    color: #ff4976;  /* Same red as t24hr-neg */
+    text-align: right;
+    justify-content: center;
+}
+
+
 
 .favorite-selector {
   text-align: center;
@@ -149,17 +180,11 @@
 
 
 
-
-@media (max-width: 768px){
-    .table-design{
-        grid-template-columns: .5fr 2fr 1fr 1fr 1.5fr 1fr;
-    }
- 
-    .favorite-selector{
-        display:none;
-    }
+.fav-col {
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
 }
-
 @media (max-width: 768px){
     .table-design{
         grid-template-columns: .5fr 2fr 1fr 1fr;
@@ -170,7 +195,13 @@
     .ath-change {
         display:none;
     }
+    .ath-change-pos, .ath-change-neg {
+        display: none;
+    }
     .favorite-selector{
+        display:none;
+    }
+    .fav-col{
         display:none;
     }
 }
