@@ -4,7 +4,7 @@ import {Routes, Route} from 'react-router-dom';
 import Home from './pages/Home/Home.jsx';
 import Coin from './pages/Coin/Coin.jsx';
 import Footer from './components/Footer/Footer.jsx';
-import Favorites from './components/Favorites/Favorites.jsx';
+import Favorites from './pages/Favorites/Favorites.jsx';
 const App = () => {
   return (
     <div className = "app">
