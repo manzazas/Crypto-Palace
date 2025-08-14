@@ -1,10 +1,30 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState,useEffect} from 'react';
 import './Navbar.css';
 import logo from '../../assets/testingfinal.png'; //import logo
 import arrow_icon from '../../assets/arrow_icon.png';//import icon
 import {CoinContext} from '../../context/Coin-Context'; //import context
 import {Link} from 'react-router-dom'; //import Link for navigation
+import {AuthContextProvider} from '../../context/Auth-Context'; //import AuthContextProvider
+import {AuthContext} from '../../context/Auth-Context'; //import AuthContext for user authentication
+import {signInWithGoogle, auth} from '../../firebase'; //import firebase auth and google sign-in function
+import {onAuthStateChanged, signOut } from 'firebase/auth'; //import firebase auth state change listener
 const Navbar = () => {
+    const { user } = useContext(AuthContext); //get userinfo from AuthContext
+
+    const handleSignOut = async () => {
+        try{
+            await signOut(auth);
+            
+
+        }catch (error){
+            console.error("Sign out error:", error);
+        }
+
+    }
+
+
+
+
 
     const {setCurrency} = useContext(CoinContext);//import context for updating currency type
     
@@ -48,13 +68,14 @@ const Navbar = () => {
                 <option value = "usd">USD</option>
                  <option value = "eur">EUR</option>
             </select>
-            <button>Sign Up <img src = {arrow_icon} alt = "arrow icon"></img></button>
+
+            {user ? (
+                <button onClick={handleSignOut}>Sign Out</button>
+            ) : (
+                <button onClick={signInWithGoogle}>Sign In with Google</button>
+            )}
+
         </div>
-
-
-
-
-
     </div>
 
 

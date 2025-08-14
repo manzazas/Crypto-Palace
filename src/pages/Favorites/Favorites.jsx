@@ -1,34 +1,67 @@
 import React, {useContext, useState, useEffect} from 'react';
 import "../Home/Home.css";
-import {CoinContext} from '../../context/Coin-Context'; //import context
-import {Link} from "react-router-dom"; //import Link for coin details page
+import {CoinContext} from '../../context/Coin-Context';
+import {Link} from "react-router-dom";
 import CoinTrending from '../../components/Coin-Trending/CoinTrending';
+import {AuthContext} from '../../context/Auth-Context';
 
 const Favorites = () => {
-  const {allCoin, currency,favoriteCoins, setFavoriteCoins} = useContext(CoinContext);//now allCoin and currency can be used in this page
+  const {allCoin, currency} = useContext(CoinContext);
+  const {user, favoriteCoins, setFavoriteCoins} = useContext(AuthContext);
   const [displayCoin, setDisplayCoin] = useState([]);
-  
+  const [isLoading, setIsLoading] = useState(true);
 
-  
-  useEffect (()=> {
-    const favoriteCoinList = allCoin.filter(coin => favoriteCoins.includes(coin.id));
+  useEffect(() => {
+    // Add console logs for debugging
+    console.log("User:", user);
+    console.log("AllCoin:", allCoin);
+    console.log("FavoriteCoins:", favoriteCoins);
 
+    if (!user) {
+      setDisplayCoin([]);
+      setIsLoading(false);
+      return;
+    }
 
-    setDisplayCoin(favoriteCoinList);
-  }, [allCoin, favoriteCoins]); //when allCoin changes, the display coin is also updated
-  
+    // Make sure both allCoin and favoriteCoins are available
+    if (allCoin.length > 0 && favoriteCoins) {
+      const favoriteCoinList = allCoin.filter(coin => favoriteCoins.includes(coin.id));
+      console.log("Filtered coins:", favoriteCoinList);
+      setDisplayCoin(favoriteCoinList);
+    }
+    
+    setIsLoading(false);
+  }, [allCoin, favoriteCoins, user]);
 
-   const handleFavorite = (e, coinId) => {
-    e.preventDefault();// prevent reroute
-    e.stopPropagation(); // stop event from bubbling up
-    setFavoriteCoins(prevFavorites =>{
-      return prevFavorites.filter(id => id !== coinId)
-
-    })
+  const handleFavorite = (e, coinId) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setFavoriteCoins(prevFavorites => 
+      prevFavorites.filter(id => id !== coinId)
+    );
   }
 
+  if (!user) {
+    return (
+      <div className="home favorites-page">
+        <div className="hero">
+          <h1>Please Sign In</h1>
+          <p>Sign in to view and manage your favorite coins</p>
+        </div>
+      </div>
+    );
+  }
 
-  
+  if (isLoading) {
+    return (
+      <div className="home favorites-page">
+        <div className="hero">
+          <h1>Loading favorites...</h1>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className = "home favorites-page">
       <div className = "hero">
@@ -58,7 +91,7 @@ const Favorites = () => {
             </div>
             <p>{currency.symbol} {item.current_price}</p>
       
-            <p className = {item.price_change_percentage_24h > 0 ? "t24hr-pos": "t24hr-neg"}>{Math.floor(item.price_change_percentage_24h * 100) / 100}</p>
+            <p className = {item.price_change_percentage_24h > 0 ? "t24hr-pos": "t24hr-neg"}>{Math.floor(item.price_change_percentage_24h * 100) / 100}%</p>
             <p className = "market-cap">{currency.symbol} {item.market_cap.toLocaleString()}</p>
             <p className = {item.ath_change_percentage > 0 ? "ath-change-pos" : "ath-change-neg"}>{item.ath_change_percentage?.toFixed(2)}%</p>
             <button onClick = {(e) => handleFavorite(e, item.id)} className = "favorite-selector">★</button>
@@ -71,4 +104,4 @@ const Favorites = () => {
   )
 }
 
-export default Favorites
+export default Favorites;

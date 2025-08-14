@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "emoji-dictionary": "^1.0.12",
+    "firebase": "^12.1.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-google-charts": "^5.2.1",

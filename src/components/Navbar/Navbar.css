@@ -4,86 +4,133 @@
 .navbar {
    display: flex;
    align-items: center;
-   justify-content:space-between;
-   padding: 20px 10%;
-   color:#ddd;
-   border-bottom:2px solid #3c3c3c;
-   background-color: black;;
-  
+   justify-content: space-between;
+   padding: 20px 40px;  /* Changed from percentage to fixed padding */
+   color: #ddd;
+   border-bottom: 2px solid #3c3c3c;
+   background-color: black;
+   max-width: 1440px;  /* Match common desktop width */
+   margin: 0 auto;    /* Center navbar */
+   width: 100%;      /* Take full width */
 }
 
 .navbar .logo {
-    width:max(12vw,120px);
+    width: 140px;  /* Fixed width instead of responsive */
 }
-.navbar ul{
-    display:flex;
-    gap:40px;
+
+.navbar ul {
+    display: flex;
+    gap: 40px;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
-.navbar li{
+
+.navbar li {
     cursor: pointer;
-
+    font-size: 16px;
 }
 
-.nav-right{
-    display:flex;
-    align-items:center;
-    gap:max(1vw,12px);
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-.navbar select {
-    background: transparent;
-    color:white;
-    padding: 5px 8px;
-    border-radius:6px;
-    border:2px solid white;
+/* Add styles for select dropdown */
+.nav-right select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #1a1a1a, #2e2e2e);
+    color: #fff;
+    border: 1px solid #3c3c3c;
+    cursor: pointer;
+    font-size: 14px;
+    outline: none;
 }
-.navbar option {
-    background-color:#01264a;
-    color:white;
+
+.nav-right select:hover {
+    border-color: #4c4c4c;
 }
-.navbar button {
-    display:flex;
-    align-items:center;
-    gap: 10px;
-    padding: 10px 25px;
-    border-radius:20px;
-    font-size:15px;
-    font-weight: 500;
-    color: #393939;
-    background:white;
+
+/* Add styles for auth buttons */
+.nav-right button {
+    padding: 10px 20px;
+    border-radius: 6px;
+    background-color: #2E8B57;
+    color: white;
     border: none;
-    cursor:pointer;
-
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.navbar button img{
-    width: 13px;
-
+.nav-right button:hover {
+    background-color: #3aa06c;
 }
 
+/* Style for sign out button specifically */
+.nav-right button[onClick="handleSignOut"] {
+    background-color: #ff4976;
+}
 
-@media(max-width: 900px){
-    .navbar{
-        padding: 20px 8%;
+.nav-right button[onClick="handleSignOut"]:hover {
+    background-color: #ff6089;
+}
+
+/* Update media queries for better responsiveness */
+@media (max-width: 900px) {
+    .navbar {
+        padding: 20px 24px;
     }
-    .navbar button{
-        gap: 8px;
-        padding: 8px 18px;
+    .navbar ul {
+        gap: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 16px;
+    }
+    .navbar ul {
+        gap: 16px;
+    }
+    .navbar .logo {
+        width: 120px;
+    }
+}
+
+/* Add new breakpoint for mobile */
+@media (max-width: 560px) {
+    .navbar {
+        flex-direction: column;
+        padding: 12px;
+        gap: 16px;
+    }
+    
+    .navbar ul {
+        gap: 20px;
         font-size: 14px;
     }
-}
-
-
-@media(max-width: 768px){
-    .navbar{
-        padding: 20px 5%;
+    
+    .nav-right {
+        width: 100%;
+        justify-content: center;
+        gap: 12px;
     }
-    .navbar ul{
-       display:none;
+    
+    .nav-right select {
+        padding: 6px 10px;
+        font-size: 13px;
     }
-    .navbar button img {
-        width:12px;
+    
+    .nav-right button {
+        padding: 8px 16px;
+        font-size: 13px;
     }
 }
 
