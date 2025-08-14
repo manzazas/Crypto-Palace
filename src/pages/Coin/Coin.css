@@ -24,92 +24,96 @@
     }
 }
 
-
+/* Basic layout */
 .coin {
     padding: 0 20px;
 }
 
+/* Simple header */
 .coin-name {
-   
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  justify-content: flex-start;       
-  padding: 20px;              
-  text-align: left;  
-
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    text-align: left;
 }
 
 .coin-name img {
     max-width: 100px;
 }
 
-.coin-name p b{
+.coin-name p b {
     font-size: 44px;
     font-weight: 500;
-    
-    
-    
-
 }
 
-
+/* Chart section */
 .coin-chart {
     max-width: 800px;
     height: 400px;
-    margin: 40px auto;
+    margin: 0 auto;
 }
+
+/* Button group with better spacing */
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 40px auto; /* Increased spacing between chart and buttons */
+}
+
+.button-group {
+    display: inline-flex;
+    border: 1px solid #444;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.button-group button {
+    padding: 12px 16px;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-right: 1px solid #444;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-group button:last-child {
+    border-right: none;
+}
+
+.button-group button:hover {
+    background-color: #1a1a1a;
+    color: #00ffcc;
+}
+
+/* Clean table style */
 .coin-info {
     max-width: 600px;
     margin: 50px auto;
     display: flex;
     flex-direction: column;
-   
+    background: rgba(1, 38, 74, 0.4);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.coin-info ul{
-    display:flex;
+.coin-info ul {
+    display: flex;
     justify-content: space-between;
     padding: 10px 0px;
-    border-bottom: 1px solid #989898;
-    list-style:none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    list-style: none;
 }
 
-.coin-info ul li:last-child{
+.coin-info ul:last-child {
+    border-bottom: none;
+}
+
+.coin-info ul li:last-child {
     font-weight: 300;
-
-}
-
-.button-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px; /* optional spacing */
-}
-
-.button-group {
-  display: inline-flex;
-  border: 1px solid #444;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.button-group button {
-  padding: 12px 16px;
-  background-color: transparent;
-  border: none;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  border-right: 1px solid #444;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.button-group button:last-child {
-  border-right: none;
-}
-
-.button-group button:hover {
-  background-color: #1a1a1a;
-  color: #00ffcc; /* match your theme */
 }

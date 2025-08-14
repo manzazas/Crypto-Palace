@@ -12,11 +12,22 @@ const Coin = () => {
   const [historicalData, setHistoricalData] = useState(null);
   const [chartDay, setChartDay] = useState(1);
 
-  // Fetch the coin’s metadata
+  const API_KEY = import.meta.env.VITE_APP_COINGECKO_API_KEY;
+
+  // Fetch the coin's metadata
   const fetchCoinData = async () => {
     try {
+      const options = {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          'x-cg-demo-api-key': API_KEY
+        }
+      };
+
       const res = await fetch(
-        `https://api.coingecko.com/api/v3/coins/${coinId}`
+        `https://api.coingecko.com/api/v3/coins/${coinId}`,
+        options
       );
       const data = await res.json();
       setCoinData(data);
@@ -28,9 +39,17 @@ const Coin = () => {
   // Fetch price history for the given number of days
   const fetchHistoricalData = async (days) => {
     try {
+      const options = {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          'x-cg-demo-api-key': API_KEY
+        }
+      };
+
       const res = await fetch(
-        `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart` +
-        `?vs_currency=${currency.name}&days=${days}`
+        `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=${currency.name}&days=${days}`,
+        options
       );
       const data = await res.json();
       setHistoricalData(data);

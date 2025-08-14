@@ -52,7 +52,8 @@ const Navbar = () => {
     }
   
     return (
-    <div className = "navbar">
+    <div className="navbar-container">
+        <div className="navbar">
         
         <Link to = "/">
         <img className = "logo" src = {logo} alt = "CryptoPalace logo"></img>
@@ -75,6 +76,7 @@ const Navbar = () => {
                 <button onClick={signInWithGoogle}>Sign In with Google</button>
             )}
 
+        </div>
         </div>
     </div>
 

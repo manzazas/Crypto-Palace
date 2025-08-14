@@ -1,21 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 
+/* Add a container for the navbar */
+.navbar-container {
+    width: 100%;
+    background-color: black;
+    border-bottom: 2px solid #3c3c3c;
+}
+
+/* Update existing navbar class */
 .navbar {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   padding: 20px 40px;  /* Changed from percentage to fixed padding */
-   color: #ddd;
-   border-bottom: 2px solid #3c3c3c;
-   background-color: black;
-   max-width: 1440px;  /* Match common desktop width */
-   margin: 0 auto;    /* Center navbar */
-   width: 100%;      /* Take full width */
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 20px 40px;  /* Changed from percentage to fixed padding */
+    color: #ddd;
+    max-width: 1440px;  /* Match common desktop width */
+    margin: 0 auto;    /* Center navbar */
+    width: 100%;      /* Take full width */
 }
 
 .navbar .logo {
     width: 140px;  /* Fixed width instead of responsive */
+    justify-self: start;
 }
 
 .navbar ul {
@@ -24,25 +31,43 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    justify-self: center;
 }
 
 .navbar li {
     cursor: pointer;
     font-size: 16px;
+    position: relative;
+}
+
+.navbar ul li::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #2E8B57;
+    left: 0;
+    bottom: -4px;
+    transition: width 0.3s ease;
+}
+
+.navbar ul li:hover::after {
+    width: 100%;
 }
 
 .nav-right {
     display: flex;
     align-items: center;
     gap: 20px;
+    justify-self: end;
 }
 
-/* Add styles for select dropdown */
+/* Update select styles */
 .nav-right select {
-    padding: 8px 12px;
+    padding: 8px 16px;
     border-radius: 6px;
-    background: linear-gradient(135deg, #1a1a1a, #2e2e2e);
-    color: #fff;
+    background-color: #1a1a1a;
+    color: white;
     border: 1px solid #3c3c3c;
     cursor: pointer;
     font-size: 14px;
@@ -50,7 +75,18 @@
 }
 
 .nav-right select:hover {
+    background-color: #2a2a2a;
     border-color: #4c4c4c;
+}
+
+/* Style the options */
+.nav-right select option {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+.nav-right select option:checked {
+    background-color: #2E8B57;
 }
 
 /* Add styles for auth buttons */
@@ -106,6 +142,17 @@
 
 /* Add new breakpoint for mobile */
 @media (max-width: 560px) {
+    .navbar {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .navbar .logo,
+    .navbar ul,
+    .nav-right {
+        justify-self: center;
+    }
+    
     .navbar {
         flex-direction: column;
         padding: 12px;
