@@ -34,7 +34,7 @@ A React app for tracking cryptocurrency prices and favorites.
 
 1. **Clone the repo**
     ```sh
-    git clone [https://github.com/manzazas/cryptopalace.git](https://github.com/manzazas/Crypto-Palace.git)
+    git clone https://github.com/manzazas/Crypto-Palace.git
     cd cryptopalace
     ```
 
