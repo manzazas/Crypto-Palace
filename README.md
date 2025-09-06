@@ -1,15 +1,3 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 # 🏦 Crypto‑Palace
 
 **Crypto‑Palace** is a sleek, modern React app that displays live cryptocurrency pricing, market data, and charts using the CoinGecko API. Built with a dark-themed UI, sortable tables, currency selectors, and smooth line charts—it's optimized for friendliness and aesthetics.
@@ -31,3 +19,75 @@ If you are developing a production application, we recommend using TypeScript wi
 | Data & Charts    | CoinGecko API, Google Charts (`react-google-charts`) |
 | Context & State  | React Context (`CoinContext`)                |
 | Hosting          | Vercel                                       |
+
+
+
+# CryptoPalace
+
+A React app for tracking cryptocurrency prices and favorites.
+
+---
+
+## 🚀 Getting Started
+
+### Option 1: Run Locally
+
+1. **Clone the repo**
+    ```sh
+    git clone https://github.com/your-username/cryptopalace.git
+    cd cryptopalace
+    ```
+
+2. **Create a `.env` file in the project root:**
+    ```
+    VITE_APP_COINGECKO_API_KEY=your_coingecko_api_key
+    VITE_APP_FIREBASE_API_KEY=your_firebase_api_key
+    ```
+
+3. **Install dependencies**
+    ```sh
+    npm install
+    ```
+
+4. **Start the development server**
+    ```sh
+    npm run dev
+    ```
+    Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+---
+
+### Option 2: Run with Docker
+
+1. **Make sure you have a `.env` file in the project root (see above).**
+
+2. **Build the Docker image**
+    ```sh
+    docker build -t cryptopalace .
+    ```
+
+3. **Run the Docker container**
+    ```sh
+    docker run -p 5173:5173 cryptopalace
+    ```
+    Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+---
+
+### Option 3: View the Live Demo
+
+Check out the live deployment on Vercel:  
+[https://your-vercel-domain.vercel.app](https://your-vercel-domain.vercel.app)
+
+---
+
+## 🔑 API Keys
+
+- You need your own [CoinGecko API key](https://www.coingecko.com/en/api) and [Firebase API key](https://console.firebase.google.com/) to use all features.
+- The `.env` file should **not** be committed to GitHub.
+
+---
+
+## 📝 License
+
+MIT
