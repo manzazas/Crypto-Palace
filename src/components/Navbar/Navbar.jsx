@@ -1,7 +1,6 @@
 import React, {useContext, useState,useEffect} from 'react';
 import './Navbar.css';
 import logo from '../../assets/testingfinal.png'; //import logo
-import arrow_icon from '../../assets/arrow_icon.png';//import icon
 import {CoinContext} from '../../context/Coin-Context'; //import context
 import {Link} from 'react-router-dom'; //import Link for navigation
 import {AuthContextProvider} from '../../context/Auth-Context'; //import AuthContextProvider
