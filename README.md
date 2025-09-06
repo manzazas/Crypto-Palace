@@ -77,7 +77,7 @@ A React app for tracking cryptocurrency prices and favorites.
 ### Option 3: View the Live Demo
 
 Check out the live deployment on Vercel:  
-[https://your-vercel-domain.vercel.app](https://crypto-palace-mauve.vercel.app/)
+[Cryptopalace.com](https://crypto-palace-mauve.vercel.app/)
 
 ---
 
