@@ -11,12 +11,12 @@ export const AuthContextProvider = ({ children }) => {
     const [favoriteCoins, setFavoriteCoins] = useState([]);
     const [error, setError] = useState(null);
 
-    // Set up auth persistence
+    // Set up authentication persistence
     useEffect(() => {
         setPersistence(auth, browserLocalPersistence);
     }, []);
 
-    // Auth state listener
+    // Authentication state listening
     useEffect(() => {
         setLoading(true);
         console.log("Setting up auth listener");

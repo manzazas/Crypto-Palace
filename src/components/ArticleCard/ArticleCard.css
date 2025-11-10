@@ -1,0 +1,74 @@
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* bigger/wider cards */
+  gap: 20px;
+  padding: 20px 0;
+  align-items: stretch; /* stretch cards to equal height */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.article-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* each card fills the grid cell */
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.35);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.article-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(2,6,23,0.45);
+}
+
+/* Square media area */
+.article-card__media {
+  width: 100%;
+  padding-top: 60%; /* slightly wider rectangle for a sleeker card */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+
+/* Meta / title area */
+.article-card__meta {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 auto; /* allow meta to grow and equalize card heights */
+  min-height: 100px; /* more space for longer titles */
+}
+
+.article-card__title {
+  font-size: 18px;
+  line-height: 1.2;
+  margin: 0;
+  color: #f8fafc;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* allow up to 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+}
+
+/* subtle time style */
+.article-card__time {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  margin-top: auto;
+}
+
+/* responsive tweaks */
+@media (max-width: 520px) {
+  .article-card__meta { min-height: 72px; padding: 12px; }
+  .article-card__title { font-size: 15px; -webkit-line-clamp: 3; }
+}
