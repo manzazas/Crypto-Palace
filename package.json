@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "apify-client": "^2.19.0",
+    "axios": "^1.13.2",
     "emoji-dictionary": "^1.0.12",
     "firebase": "^12.1.0",
     "react": "^19.1.0",

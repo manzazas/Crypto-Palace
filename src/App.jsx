@@ -5,6 +5,7 @@ import Home from './pages/Home/Home.jsx';
 import Coin from './pages/Coin/Coin.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import Favorites from './pages/Favorites/Favorites.jsx';
+import News from './pages/News/News.jsx';
 import {AuthContextProvider} from './context/Auth-Context.jsx'; // Import AuthContextProvider
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path='/' element = {<Home />} />
         <Route path='/coin/:coinId' element = {<Coin />} />
         <Route path ='/favorites' element = {<Favorites />} />
+        <Route path ='/news' element = {<News />} />
         
        
       </Routes>
